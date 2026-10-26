@@ -19,6 +19,7 @@ steps:
   - name: Extract ClassFlow ZIP
     run: |
       unzip -o classflow.zip -d project
+      echo "Searching for package.json..."
       find project -name package.json
 
   - name: Install dependencies and build web app
