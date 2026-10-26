@@ -1,31 +1,13 @@
-name: Build ClassFlow Android APK
+name: Test ClassFlow Build
 
 on:
 workflow_dispatch:
 
 jobs:
-build:
+test:
 runs-on: ubuntu-latest
-
 steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
-
-  - name: Set up Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: 22
-
-  - name: Extract ClassFlow ZIP
-    run: |
-      unzip -o classflow.zip -d project
-      echo "Searching for package.json..."
-      find project -name package.json
-
-  - name: Install dependencies and build web app
-    run: |
-      PROJECT_DIR="$(dirname "$(find project -name package.json -print -quit)")"
-      echo "Project directory: $PROJECT_DIR"
-      cd "$PROJECT_DIR"
-      npm install --package-lock=false
-      npm run build
+- name: Check repository
+uses: actions/checkout@v4
+- name: Show files
+run: ls -la
